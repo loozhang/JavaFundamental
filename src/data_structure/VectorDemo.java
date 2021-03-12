@@ -1,4 +1,4 @@
-package study;
+package data_structure;
 
 import java.util.*;
 
