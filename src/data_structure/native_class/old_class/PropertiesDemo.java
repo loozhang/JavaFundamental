@@ -1,4 +1,4 @@
-package data_structure.old_class;
+package data_structure.native_class.old_class;
 
 import java.util.Iterator;
 import java.util.Properties;

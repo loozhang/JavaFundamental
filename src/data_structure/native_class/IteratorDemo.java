@@ -1,4 +1,4 @@
-package data_structure;
+package data_structure.native_class;
 
 import java.util.ArrayList;
 import java.util.Iterator;
