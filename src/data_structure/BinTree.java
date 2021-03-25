@@ -2,6 +2,9 @@ package data_structure;
 
 import common.TreeNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 //https://www.cnblogs.com/karrya/p/11216039.html
 public class BinTree {
     public static void main(String[] args) {
@@ -15,6 +18,7 @@ public class BinTree {
         root.left = root.createBinaryTreeByArray(arr,0);
         root.printf(root,0);
         System.out.println(isSymmetric(root.left));
+        System.out.println(maxDepth2(root.left));
 
 //        TreeNode root = new TreeNode();
 //        root.left = null;
@@ -66,7 +70,7 @@ public class BinTree {
 
     }
 
-
+    //判断二叉树是否对称
     public static boolean isSymmetric(TreeNode root) {
         if (root==null) return true;
         return isSymmetric(root.left, root.right);
@@ -75,5 +79,26 @@ public class BinTree {
         if (left==null && right==null) return true;
         if (left!=null && right==null || left==null && right!=null || left.val != right.val) return false;
         return isSymmetric(left.left, right.right) && isSymmetric(left.right, right.left);
+    }
+
+    //递归解法
+    public static int maxDepth1(TreeNode root){
+        return root==null ? 0:(1+Math.max(maxDepth1(root.left),maxDepth1(root.right)));
+    }
+
+    public static int maxDepth2(TreeNode root){
+        if(root==null) return 0;
+        int res=0;
+        Queue<TreeNode> q=new LinkedList<>();
+        q.offer(root);
+        while (!q.isEmpty()){
+            ++res;
+            for(int i=q.size();i>0;i--){
+                TreeNode tn=q.poll();
+                if(tn.left!=null) q.offer(tn.left);
+                if(tn.right!=null) q.offer(tn.right);
+            }
+        }
+        return res;
     }
 }
